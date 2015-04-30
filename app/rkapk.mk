@@ -3,4 +3,5 @@ PRODUCT_PACKAGES += \
 	MediaFloat \
 	RkExplorer \
 	RkVideoPlayer \
+	Bonovomusic \
         StressTest 
