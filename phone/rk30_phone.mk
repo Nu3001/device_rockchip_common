@@ -48,14 +48,7 @@ PRODUCT_COPY_FILES += \
     $(CUR_PATH)/phone/etc/operator_table:system/etc/operator_table
 
 PRODUCT_COPY_FILES += \
-    $(CUR_PATH)/phone/bin/usb_modeswitch.sh:system/bin/usb_modeswitch.sh \
-    $(CUR_PATH)/phone/bin/usb_modeswitch:system/bin/usb_modeswitch \
     $(CUR_PATH)/phone/lib/libril-rk29-dataonly.so:system/lib/libril-rk29-dataonly.so
-
-modeswitch_files := $(shell ls $(CUR_PATH)/phone/etc/usb_modeswitch.d)
-PRODUCT_COPY_FILES += \
-    $(foreach file, $(modeswitch_files), \
-    $(CUR_PATH)/phone/etc/usb_modeswitch.d/$(file):system/etc/usb_modeswitch.d/$(file))
 
 PRODUCT_PACKAGES += \
     rild \
@@ -71,7 +64,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     ro.com.android.dataroaming=true \
 	ril.function.dataonly=1
- 
+
+$(call inherit-product-if-exists, external/usb_modeswitch/usb_modeswitch.mk)
+
 ######################################
 #   phonepad modem list
 ######################################
